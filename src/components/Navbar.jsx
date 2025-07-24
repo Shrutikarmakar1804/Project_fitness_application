@@ -1,25 +1,43 @@
+// src/components/Navbar.jsx
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Stack } from '@mui/material';
-
+import { Stack, IconButton, Tooltip } from '@mui/material';
+import { Brightness4, Brightness7 } from '@mui/icons-material';
 import Logo from '../assets/images/Logo.png';
 
-const Navbar = () => (
-  <Stack direction="row" justifyContent="space-around" sx={{ gap: { sm: '123px', xs: '40px' }, mt: { sm: '32px', xs: '20px' }, justifyContent: 'none' }} px="20px">
-    <Link to="/">
-      <img src={Logo} alt="logo" style={{ width: '48px', height: '48px', margin: '0px 20px' }} />
-    </Link>
+const Navbar = ({ toggleTheme, mode }) => {
+  return (
     <Stack
       direction="row"
-      gap="40px"
-      fontFamily="Alegreya"
-      fontSize="24px"
-      alignItems="flex-end"
+      justifyContent="space-between"
+      alignItems="center"
+      sx={{
+        px: '20px',
+        py: '16px',
+        backgroundColor: 'background.default',
+        boxShadow: '0 2px 6px rgba(0,0,0,0.05)',
+      }}
     >
-      <Link to="/" style={{ textDecoration: 'none', color: '#3A1212', borderBottom: '3px solid #FF2625' }}>Home</Link>
-      <a href="#exercises" style={{ textDecoration: 'none', color: '#3A1212' }}>Exercises</a>
+      <Link to="/">
+        <img src={Logo} alt="logo" style={{ width: '48px', height: '48px' }} />
+      </Link>
+
+      <Stack direction="row" spacing={4} alignItems="center">
+        <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
+          Home
+        </Link>
+        <a href="#exercises" style={{ textDecoration: 'none', color: 'inherit' }}>
+          Exercises
+        </a>
+
+        <Tooltip title={`Switch to ${mode === 'light' ? 'dark' : 'light'} mode`}>
+          <IconButton onClick={toggleTheme} color="inherit">
+            {mode === 'light' ? <Brightness4 /> : <Brightness7 />}
+          </IconButton>
+        </Tooltip>
+      </Stack>
     </Stack>
-  </Stack>
-);
+  );
+};
 
 export default Navbar;
