@@ -12,29 +12,36 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --primary: #ff2625;
+  --primary-dark: #d1001f;
+  --background: #fef5f5;
+  --text: #1e1e1e;
+  --muted-text: #555;
 }
 
 /* 🔗 Links */
 a {
   font-weight: 500;
-  color: #ff2625;
+  color: var(--primary);
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 a:hover {
-  color: #d1001f;
+  color: var(--primary-dark);
 }
 
 /* 📦 Body Reset */
 body {
   margin: 0;
+  padding: 0;
   display: flex;
   flex-direction: column;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  background: linear-gradient(to top right, #fff 0%, #fef5f5 100%);
+  background: linear-gradient(to top right, #fff 0%, var(--background) 100%);
   overflow-x: hidden;
 }
 
@@ -42,15 +49,16 @@ body {
 h1 {
   font-size: 3.2rem;
   line-height: 1.1;
+  color: var(--text);
 }
 
 h2, h3, h4 {
   font-weight: 600;
-  color: #1e1e1e;
+  color: var(--text);
 }
 
 p {
-  color: #444;
+  color: var(--muted-text);
   font-size: 1rem;
   line-height: 1.6;
 }
@@ -63,7 +71,7 @@ button {
   font-size: 1rem;
   font-weight: 600;
   font-family: inherit;
-  background-color: #ff2625;
+  background-color: var(--primary);
   color: white;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -71,7 +79,7 @@ button {
 }
 
 button:hover {
-  background-color: #d1001f;
+  background-color: var(--primary-dark);
   box-shadow: 0 6px 16px rgba(255, 38, 37, 0.4);
 }
 
@@ -94,18 +102,57 @@ button:focus-visible {
   transform: scale(1.03);
 }
 
-/* 🌤 Light Theme (optional) */
+/* 🧭 Navbar Styling */
+.navbar {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background-color: white;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  z-index: 999;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* 🏋️ Exercise Cards */
+.exercise-card {
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+  padding: 1rem;
+  transition: transform 0.2s ease;
+}
+
+.exercise-card:hover {
+  transform: translateY(-4px);
+}
+
+/* 💬 Labels */
+.exercise-label {
+  display: inline-block;
+  background-color: #fce4e4;
+  color: var(--primary-dark);
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.3em 0.7em;
+  border-radius: 20px;
+  margin-right: 0.5em;
+}
+
+/* 🌤 Light Theme */
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
+    color: var(--text);
     background-color: #ffffff;
   }
 
   a:hover {
-    color: #d1001f;
+    color: var(--primary-dark);
   }
 
   button {
-    background-color: #ff2625;
+    background-color: var(--primary);
   }
 }
